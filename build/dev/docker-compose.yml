@@ -1,0 +1,13 @@
+version: '2.4'
+services:
+  api-server:
+    build:
+      context: ../../
+      dockerfile: build/dev/Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      HTTP_PORT: "8001"
+      DB_NAME: "users.sqlite"
+      DB_PATH: "db"
+    restart: on-failure

@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"log"
 
-	"magnet-test-task/{{ dasherize .Name }}/internal/generated/restapi"
-	"magnet-test-task/{{ dasherize .Name }}/internal/generated/restapi/operations"
+	"magnet-test-task/internal/generated/restapi"
+	"magnet-test-task/internal/generated/restapi/operations"
 	{{range $index, $op := .Operations}}
         {{ $found := false }}
         {{ range $i, $sop := $operations }}
@@ -23,7 +23,7 @@ import (
 	"github.com/go-openapi/loads"
 	"github.com/vrischmann/envconfig"
 
-	"magnet-test-task/{{ dasherize .Name }}/internal/app"
+	"magnet-test-task/internal/app"
 
 
 )
@@ -51,7 +51,7 @@ func main() {
 
 	server.ConfigureAPI()
 
-	server.Port = cfg.HTTPBindPort
+	server.Port = cfg.HTTPPort
     if err := server.Serve(); err != nil {
         log.Fatalln(err)
     }

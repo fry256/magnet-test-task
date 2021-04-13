@@ -7,11 +7,11 @@ import (
 
 // Config struct
 type Config struct {
-    HTTPPort int `envconfig:"default=8001"`
-    SQLLite struct {
-        Driver string `envconfig:"default=sqlite3"`
-        Path string `envconfig:"default=/tmp/users.db"`
-    }
+	HTTPPort int `envconfig:"default=8001"`
+	SQLLite  struct {
+		Driver string `envconfig:"default=sqlite3"`
+		Path   string `envconfig:"default=/tmp/users.db"`
+	}
 }
 
 // InitConfig func

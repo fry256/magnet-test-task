@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    birth_date TEXT NOT NULL
+);
