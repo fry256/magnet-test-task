@@ -32,5 +32,5 @@ up:
 
 run: prune build up
 
-down:
+stop:
 	docker-compose -f build/dev/docker-compose.yml down
