@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // User user
@@ -18,22 +20,63 @@ import (
 type User struct {
 
 	// birth date
-	BirthDate int64 `json:"birthDate,omitempty"`
+	BirthDate string `json:"birthDate,omitempty"`
 
 	// name
+	// Min Length: 1
 	Name string `json:"name,omitempty"`
 
 	// uid
+	// Read Only: true
 	UID int64 `json:"uid,omitempty"`
 }
 
 // Validate validates this user
 func (m *User) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this user based on context it is used
+func (m *User) validateName(formats strfmt.Registry) error {
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("name", "body", m.Name, 1); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this user based on the context it is used
 func (m *User) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateUID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *User) contextValidateUID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "uid", "body", int64(m.UID)); err != nil {
+		return err
+	}
+
 	return nil
 }
 

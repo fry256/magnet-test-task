@@ -104,3 +104,27 @@ func (o *GetUserByIDNotFound) WriteResponse(rw http.ResponseWriter, producer run
 
 	rw.WriteHeader(404)
 }
+
+// GetUserByIDInternalServerErrorCode is the HTTP code returned for type GetUserByIDInternalServerError
+const GetUserByIDInternalServerErrorCode int = 500
+
+/*GetUserByIDInternalServerError Internal server error
+
+swagger:response getUserByIdInternalServerError
+*/
+type GetUserByIDInternalServerError struct {
+}
+
+// NewGetUserByIDInternalServerError creates GetUserByIDInternalServerError with default headers values
+func NewGetUserByIDInternalServerError() *GetUserByIDInternalServerError {
+
+	return &GetUserByIDInternalServerError{}
+}
+
+// WriteResponse to the client
+func (o *GetUserByIDInternalServerError) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+
+	rw.Header().Del(runtime.HeaderContentType) //Remove Content-Type on empty responses
+
+	rw.WriteHeader(500)
+}

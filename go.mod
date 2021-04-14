@@ -12,6 +12,8 @@ require (
 	github.com/go-openapi/strfmt v0.20.1
 	github.com/go-openapi/swag v0.19.15
 	github.com/go-openapi/validate v0.20.2
+	github.com/golang-migrate/migrate/v4 v4.14.1
+	github.com/google/wire v0.5.0
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-sqlite3 v1.14.6

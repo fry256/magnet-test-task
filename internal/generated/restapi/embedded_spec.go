@@ -66,6 +66,9 @@ func init() {
             "schema": {
               "$ref": "#/definitions/User"
             }
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -82,7 +85,8 @@ func init() {
         "operationId": "getUserByID",
         "parameters": [
           {
-            "type": "string",
+            "type": "integer",
+            "format": "int64",
             "description": "The userID that needs to be fetched. Use 1 for testing. ",
             "name": "uid",
             "in": "path",
@@ -101,6 +105,9 @@ func init() {
           },
           "404": {
             "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       },
@@ -116,7 +123,8 @@ func init() {
         "operationId": "updateUser",
         "parameters": [
           {
-            "type": "string",
+            "type": "integer",
+            "format": "int64",
             "description": "userID that need to be updated",
             "name": "uid",
             "in": "path",
@@ -144,6 +152,9 @@ func init() {
           },
           "404": {
             "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       },
@@ -158,7 +169,8 @@ func init() {
         "operationId": "deleteUser",
         "parameters": [
           {
-            "type": "string",
+            "type": "integer",
+            "format": "int64",
             "description": "The userID that needs to be deleted",
             "name": "uid",
             "in": "path",
@@ -166,11 +178,17 @@ func init() {
           }
         ],
         "responses": {
+          "200": {
+            "description": "successful operation"
+          },
           "400": {
             "description": "Invalid userID supplied"
           },
           "404": {
             "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -181,15 +199,16 @@ func init() {
       "type": "object",
       "properties": {
         "birthDate": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "uid": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "readOnly": true
         }
       }
     }
@@ -254,6 +273,9 @@ func init() {
             "schema": {
               "$ref": "#/definitions/User"
             }
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -270,7 +292,8 @@ func init() {
         "operationId": "getUserByID",
         "parameters": [
           {
-            "type": "string",
+            "type": "integer",
+            "format": "int64",
             "description": "The userID that needs to be fetched. Use 1 for testing. ",
             "name": "uid",
             "in": "path",
@@ -289,6 +312,9 @@ func init() {
           },
           "404": {
             "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       },
@@ -304,7 +330,8 @@ func init() {
         "operationId": "updateUser",
         "parameters": [
           {
-            "type": "string",
+            "type": "integer",
+            "format": "int64",
             "description": "userID that need to be updated",
             "name": "uid",
             "in": "path",
@@ -332,6 +359,9 @@ func init() {
           },
           "404": {
             "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       },
@@ -346,7 +376,8 @@ func init() {
         "operationId": "deleteUser",
         "parameters": [
           {
-            "type": "string",
+            "type": "integer",
+            "format": "int64",
             "description": "The userID that needs to be deleted",
             "name": "uid",
             "in": "path",
@@ -354,11 +385,17 @@ func init() {
           }
         ],
         "responses": {
+          "200": {
+            "description": "successful operation"
+          },
           "400": {
             "description": "Invalid userID supplied"
           },
           "404": {
             "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -369,15 +406,16 @@ func init() {
       "type": "object",
       "properties": {
         "birthDate": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "uid": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "readOnly": true
         }
       }
     }

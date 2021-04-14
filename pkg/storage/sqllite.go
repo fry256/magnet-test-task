@@ -30,7 +30,7 @@ func (s *Storage) GetInstance() *sql.DB {
 }
 
 func (s *Storage) Store(ctx context.Context, user *models.User) error {
-	if user.UID > 0 {
+	if user.UID == 0 {
 		return s.new(ctx, user)
 	}
 

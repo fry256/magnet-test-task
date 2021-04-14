@@ -41,6 +41,8 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/User"
+        "500":
+          description: "Internal server error"
   /user/{uid}:
     get:
       tags:
@@ -55,7 +57,8 @@ paths:
         in: "path"
         description: "The userID that needs to be fetched. Use 1 for testing. "
         required: true
-        type: "string"
+        type: "integer"
+        format: "int64"
       responses:
         "200":
           description: "successful operation"
@@ -65,6 +68,8 @@ paths:
           description: "Invalid userID supplied"
         "404":
           description: "User not found"
+        "500":
+          description: "Internal server error"
     put:
       tags:
       - "user"
@@ -78,7 +83,8 @@ paths:
         in: "path"
         description: "userID that need to be updated"
         required: true
-        type: "string"
+        type: "integer"
+        format: "int64"
       - in: "body"
         name: "body"
         description: "Updated user object"
@@ -94,6 +100,8 @@ paths:
           description: "Invalid user supplied"
         "404":
           description: "User not found"
+        "500":
+          description: "Internal server error"
     delete:
       tags:
       - "user"
@@ -107,12 +115,17 @@ paths:
         in: "path"
         description: "The userID that needs to be deleted"
         required: true
-        type: "string"
+        type: "integer"
+        format: "int64"
       responses:
+        "200":
+          description: "successful operation"
         "400":
           description: "Invalid userID supplied"
         "404":
           description: "User not found"
+        "500":
+          description: "Internal server error"
 definitions:
   User:
     type: "object"
@@ -120,8 +133,9 @@ definitions:
       uid:
         type: "integer"
         format: "int64"
+        readOnly: true
       name:
         type: "string"
+        minLength: 1
       birthDate:
-        type: "integer"
-        format: "int64"
+        type: "string"

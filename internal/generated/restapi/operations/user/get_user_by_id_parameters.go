@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetUserByIDParams creates a new GetUserByIDParams object
@@ -34,7 +35,7 @@ type GetUserByIDParams struct {
 	  Required: true
 	  In: path
 	*/
-	UID string
+	UID int64
 }
 
 // BindRequest both binds and validates a request, it assumes that complex things implement a Validatable(strfmt.Registry) error interface
@@ -65,7 +66,12 @@ func (o *GetUserByIDParams) bindUID(rawData []string, hasKey bool, formats strfm
 
 	// Required: true
 	// Parameter is provided by construction from the route
-	o.UID = raw
+
+	value, err := swag.ConvertInt64(raw)
+	if err != nil {
+		return errors.InvalidType("uid", "path", "int64", raw)
+	}
+	o.UID = value
 
 	return nil
 }

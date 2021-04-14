@@ -7,7 +7,8 @@ services:
     ports:
       - "8001:8001"
     environment:
-      HTTP_PORT: "8001"
-      DB_NAME: "users.sqlite"
-      DB_PATH: "db"
+      MAGNET_TEST_TASK_HTTP_PORT: "8001"
+      MAGNET_TEST_TASK_SQLLITE_NAME: "users.sqlite"
+      MAGNET_TEST_TASK_SQLLITE_PATH: "db"
+      MAGNET_TEST_TASK_SQLLITE_MIGRATIONPATH: "db/migrations"
     restart: on-failure

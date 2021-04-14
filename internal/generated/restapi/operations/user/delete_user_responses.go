@@ -11,6 +11,30 @@ import (
 	"github.com/go-openapi/runtime"
 )
 
+// DeleteUserOKCode is the HTTP code returned for type DeleteUserOK
+const DeleteUserOKCode int = 200
+
+/*DeleteUserOK successful operation
+
+swagger:response deleteUserOK
+*/
+type DeleteUserOK struct {
+}
+
+// NewDeleteUserOK creates DeleteUserOK with default headers values
+func NewDeleteUserOK() *DeleteUserOK {
+
+	return &DeleteUserOK{}
+}
+
+// WriteResponse to the client
+func (o *DeleteUserOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+
+	rw.Header().Del(runtime.HeaderContentType) //Remove Content-Type on empty responses
+
+	rw.WriteHeader(200)
+}
+
 // DeleteUserBadRequestCode is the HTTP code returned for type DeleteUserBadRequest
 const DeleteUserBadRequestCode int = 400
 
@@ -57,4 +81,28 @@ func (o *DeleteUserNotFound) WriteResponse(rw http.ResponseWriter, producer runt
 	rw.Header().Del(runtime.HeaderContentType) //Remove Content-Type on empty responses
 
 	rw.WriteHeader(404)
+}
+
+// DeleteUserInternalServerErrorCode is the HTTP code returned for type DeleteUserInternalServerError
+const DeleteUserInternalServerErrorCode int = 500
+
+/*DeleteUserInternalServerError Internal server error
+
+swagger:response deleteUserInternalServerError
+*/
+type DeleteUserInternalServerError struct {
+}
+
+// NewDeleteUserInternalServerError creates DeleteUserInternalServerError with default headers values
+func NewDeleteUserInternalServerError() *DeleteUserInternalServerError {
+
+	return &DeleteUserInternalServerError{}
+}
+
+// WriteResponse to the client
+func (o *DeleteUserInternalServerError) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+
+	rw.Header().Del(runtime.HeaderContentType) //Remove Content-Type on empty responses
+
+	rw.WriteHeader(500)
 }
