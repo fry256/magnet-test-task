@@ -11,7 +11,7 @@ type Config struct {
     SQLLite struct {
         Name string `envconfig:"default=database.sqlite"`
         Path string `envconfig:"default=/etc/sqlite"`
-        MigrationPath string `envconfig:"default=/etc/sqlite/migrations"`
+        MigrationPath string `envconfig:"default=etc/sqlite/migrations"`
     }
 }
 

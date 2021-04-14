@@ -10,7 +10,13 @@ make run
 
 ```
 make stop
-```
+`
+
+### Available env
+- MAGNET_TEST_TASK_HTTP_PORT=8001
+- MAGNET_TEST_TASK_SQLLITE_NAME="database.sqlite"``
+- MAGNET_TEST_TASK_SQLLITE_PATH="/etc/sqlite"
+- MAGNET_TEST_TASK_SQLLITE_MIGRATIONPATH="/etc/sqlite/migrations"
 
 ### Run swagger for api docs for develop
 
